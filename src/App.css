@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.meatButton {
+  background-color: aqua;
+  border-bottom-style: ridge;
+  border-radius: 180px;
+  height: 80px;
+  width: 80px;
+}
+
+.Active {
+  background-color: fuchsia;
+}
+
+.ingredientButton {
+  border-bottom-style: ridge;
+  border-radius: 180px;
+  height: 80px;
+  width: 80px;
+}
+
+.container {
+  display: flex;
+}
