@@ -22,7 +22,6 @@ function Dashboard(props) {
             el.isActive = false
             return el
         }))
-        console.log(orders);
     }
 
 
@@ -59,13 +58,21 @@ function Dashboard(props) {
     }
 
     return (
-        <>
-            <ButtonList meats={meats} setMeats={setMeats} toggleActive={toggleActive}/>
-            <IngredientList ingredients={ingredients} ingredientActive={ingredientActive}/>
-            <Customize setInstruction={setInstuction}/>
+        <div>
+            <div className="card"
+                 style={{width: "800px", margin: "30px auto 0 auto", padding: "10px", backgroundColor: "#424242"}}>
+                <h6 className="white-text">Make Order</h6>
+            </div>
+            
+            <div className="card" style={{width: "800px", margin: "0 auto 30px auto", padding: "10px"}}>
+                <ButtonList meats={meats} setMeats={setMeats} toggleActive={toggleActive}/>
+                <IngredientList ingredients={ingredients} ingredientActive={ingredientActive}/>
+                <Customize setInstruction={setInstuction}/>
+
+            </div>
             <Summary instruction={instruction} meats={meats} ingredients={ingredients} sendOrder={sendOrder}/>
             <BurgerList handleDeleted={handleDeleted} orders={orders}/>
-        </>
+        </div>
     );
 }
 

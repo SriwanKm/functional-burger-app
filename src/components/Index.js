@@ -7,5 +7,6 @@ import Summary from "./Summary"
 import BurgerList from "./BurgerList"
 import Customize from "./Customize"
 import BurgerOrder from "./BurgerOrder"
+import Navbar from "./Navbar"
 
-export {ButtonList, Button, Dashboard, Ingredient, IngredientList, Summary, BurgerList, Customize, BurgerOrder}
+export {ButtonList, Button, Dashboard, Ingredient, IngredientList, Summary, BurgerList, Customize, BurgerOrder, Navbar}

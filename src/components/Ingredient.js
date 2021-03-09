@@ -1,12 +1,16 @@
 import React from 'react';
 
 function Ingredient(props) {
-    const {imgUrl, name, ingredientActive, id, isActive} = props
+    const {name, ingredientActive, id, isActive, style} = props
 
     return (
-        <div className={"container"}>
-            <img id={id} src={imgUrl} alt={name} className={isActive ? "ingredientButton Active" : "ingredientButton"} onClick={(e) => ingredientActive(e)}/>
-        </div>
+        <span className="item-list">{name}
+            <button style={style} id={id} value={name}
+                    className={isActive ? "ingredientButton Active btn-floating btn-small waves-effect waves-light red" : "ingredientButton btn-floating btn-small waves-effect waves-light grey darken-3"}
+                    onClick={(e) => ingredientActive(e)}>
+                     {isActive ? "x" : "+"}
+            </button>
+        </span>
     );
 }
 

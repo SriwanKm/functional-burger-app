@@ -6,8 +6,7 @@ function IngredientList(props) {
 
     return (
         <div>
-            {ingredients.map(el => <Ingredient isActive={el.isActive} key={el.id} id={el.id} name={el.name}
-                                               imgUrl={el.img_url}
+        {ingredients.map(el => <Ingredient style={{margin: "15px"}} isActive={el.isActive} key={el.id} id={el.id} name={el.name}
                                                ingredientActive={ingredientActive}/>)}
         </div>
     );

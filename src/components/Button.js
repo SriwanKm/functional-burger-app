@@ -1,12 +1,14 @@
 import React from 'react';
 
 function Button(props) {
-    const {id, imgUrl, name, handleMeat, isActive} = props
+    const {id, name, handleMeat, isActive, style} = props
 
     return (
-        <div className={"container"}>
-            <img id={id} alt={name} src={imgUrl} className={isActive ? "meatButton Active" : "meatButton"}
-                 onClick={(e) => handleMeat(e)}/>
+        <div className="container">
+            <button id={id} value={name} className={isActive ? "meatButton Active waves-effect btn-large amber darken-4" : "meatButton waves-effect btn-large amber darken-1"}
+                    onClick={(e) => handleMeat(e)} style={style}>
+                {name}
+            </button>
         </div>
     );
 }
