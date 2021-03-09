@@ -5,9 +5,9 @@ function Navbar() {
     return (
         <nav>
             <div className="nav-wrapper red">
-                <a href="#" className="brand-logo center">
+                <div className="brand-logo center">
                     Best Burger
-                </a>
+                </div>
             </div>
         </nav>
     )

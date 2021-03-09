@@ -1,19 +1,29 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 function BurgerOrder(props) {
-    const {order, handleDeleted, id} = props
-    const [delivered, setDelivered] = useState(false)
-
-    const handleDelivered = () => {
-        setDelivered(!delivered)
-    }
+    const {meat, ingredients, instruction, handleDeleted, id, isDelivered, handleDelivered} = props
 
     return (
-        <div>
-            <p style={delivered ? {"textDecoration": "line-through"} : null}>{order}</p>
-            <button onClick={handleDelivered}>Delivered</button>
-            <button onClick={() => handleDeleted(id)}>Delete</button>
+        <div className={isDelivered ? "card grey lighten-2" : "card"}
+             style={{width: "800px", margin: "0 auto 30px auto", padding: "10px"}}>
+            <h6 className="teal-text" style={isDelivered ? {"textDecoration": "line-through"} : null}>{meat}</h6>
+
+            <ul style={isDelivered ? {"textDecoration": "line-through"} : null} className="collection">
+                {ingredients.map(el => <li key={Math.round(Math.random() * 1000)}>{el}</li>)}
+                <li key={Math.round(Math.random() * 1000)}>{instruction}</li>
+            </ul>
+
+            <button id={id} onClick={(e) => handleDelivered(e)} style={{margin: "2px"}}
+                    className={isDelivered ? "btn waves-effect waves-light amber" : "btn waves-effect waves-light"}
+                    type="submit" name="action">{isDelivered ? "Incomplete" : "Completed"}
+                <i className="material-icons left">{isDelivered ? "clear" : "done"}</i>
+            </button>
+            <button onClick={() => handleDeleted(id)} style={{margin: "2px"}}
+                    className="btn waves-effect waves-light red darken-2" type="submit" name="action">Delete
+                <i className="material-icons left">delete</i>
+            </button>
         </div>
+
     );
 }
 
