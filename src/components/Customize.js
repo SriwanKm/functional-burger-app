@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 
-function Customize(props) {
-    const {setInstruction} = props
+const Customize = ({setInstruction}) => {
     const [text, setText] = useState("")
     const handleChange = (e) => {
-        setText(e.target.value)
+        setText(e?.target?.value)
     }
 
     const handleSubmit = () => {
@@ -28,7 +27,7 @@ function Customize(props) {
                     value="Add">Add
             </button>
         </div>
-    );
+    )
 }
 
-export default Customize;
+export default Customize

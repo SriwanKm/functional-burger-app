@@ -1,30 +1,44 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react'
 import {ButtonList, IngredientList, Summary, BurgerList, Customize} from "./Index"
 import {INGREDIENT_SEEDS} from '../seeds/IngredientSeeds'
 import {MEAT_SEEDS} from '../seeds/MeatSeeds'
 import firebase from '../util/firebase'
 
-function Dashboard(props) {
+const Dashboard = (props) => {
+    const databaseName = 'BurgerOrder/'
     const [orders, setOrders] = useState([])
     const [meats, setMeats] = useState(MEAT_SEEDS)
     const [ingredients, setIngredients] = useState(INGREDIENT_SEEDS)
     const [instruction, setInstuction] = useState("")
-    const [isDelivered, setDelivered] = useState(false)
-    const orderRef = firebase.database().ref('BurgerOrder')
+    const orderRef = firebase.database()?.ref(databaseName)
 
     useEffect(() => {
+        const orderRef = firebase?.database()?.ref(databaseName)
         orderRef.on('value', (snapshot) => {
-            const odrs = snapshot.val()
+            const odrs = snapshot?.val()
             const orderList = []
             for (let id in odrs) {
-                orderList.push({id, ...odrs[id]})
+                orderList?.push({id, ...odrs[id]})
             }
             setOrders(orderList)
         })
     }, [])
 
+    const clearMeats = () => {
+        setMeats(meats?.map(el => {
+            el.isActive = false
+            return el
+        }))
+    }
 
-    const sendOrder = (activeMeats, activeIngredients, instruction, isDelivered) => {
+    const clearIngredients = () => {
+        setIngredients(ingredients?.map(el => {
+            el.isActive = false
+            return el
+        }))
+    }
+
+    const sendOrder = (activeMeats, activeIngredients, instruction) => {
         if (!activeMeats && !instruction) return
 
         setInstuction("")
@@ -33,62 +47,48 @@ function Dashboard(props) {
             ingredients: [activeIngredients],
             instruction: instruction,
             isDelivered: false
-        };
-        const burgerOrder = [...orders, newOrder];
+        }
 
-        orderRef.push(newOrder)
-        setMeats(meats.map(el => {
-            el.isActive = false
-            return el
-        }))
-        setIngredients(ingredients.map(el => {
-            el.isActive = false
-            return el
-        }))
+        orderRef?.push(newOrder)
+        clearMeats()
+        clearIngredients()
     }
 
     const toggleActive = (e) => {
-        setMeats([...meats.map(el => {
-            el.isActive = el.id === parseInt(e.target.id);
+        setMeats(meats?.map(el => {
+            el.isActive = el?.id === parseInt(e?.target?.id)
             return el
-        })])
+        }))
     }
 
     const ingredientActive = (e) => {
-        setIngredients([...ingredients.map(el => {
-                if (el.id === parseInt(e.target.id)) {
-                    el.isActive = !el.isActive
+        setIngredients(ingredients?.map(el => {
+                if (el?.id === parseInt(e?.target?.id)) {
+                    el.isActive = !el?.isActive
                 }
                 return el
             }
-            )]
+            )
         )
     }
 
     const handleDeleted = (id) => {
-        orderRef.child(id).remove()
+        orderRef?.child(id)?.remove()
     }
 
     const handleClearSummary = () => {
         setInstuction("")
-        setMeats(meats.map(el => {
-            el.isActive = false
-            return el
-        }))
-        setIngredients(ingredients.map(el => {
-            el.isActive = false
-            return el
-        }))
+        clearMeats()
+        clearIngredients()
     }
 
     const handleDelivered = (e) => {
-        var childRef = firebase.database().ref('BurgerOrder/' + e.target.id)
+        const childRef = orderRef?.child(e?.target?.id)
         childRef.once('value', (snapshot) => {
-            const data = snapshot.val()
-            childRef.update({isDelivered: !data.isDelivered})
+            const data = snapshot?.val()
+            childRef?.update({isDelivered: !data?.isDelivered})
         })
     }
-
 
     return (
         <div>
@@ -105,10 +105,10 @@ function Dashboard(props) {
             </div>
             <Summary handleClearSummary={handleClearSummary} instruction={instruction} meats={meats}
                      ingredients={ingredients} sendOrder={sendOrder}/>
-            <BurgerList isDelivered={isDelivered} ingredients={ingredients} meats={meats} handleDeleted={handleDeleted}
+            <BurgerList ingredients={ingredients} meats={meats} handleDeleted={handleDeleted}
                         orders={orders} handleDelivered={handleDelivered}/>
         </div>
-    );
+    )
 }
 
-export default Dashboard;
+export default Dashboard

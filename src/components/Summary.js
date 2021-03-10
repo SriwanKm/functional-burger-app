@@ -1,9 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-function Summary(props) {
-    const {meats, ingredients, sendOrder, instruction, handleClearSummary} = props
-    const activeMeats = meats.filter(el => el.isActive).map(el => el.name)[0]
-    const activeIngredients = ingredients.filter(el => el.isActive).map(el => el.name).join(", ")
+const Summary = ({meats, ingredients, sendOrder, instruction, handleClearSummary}) => {
+    const activeMeats = meats?.filter(el => el?.isActive)?.map(el => el?.name)?.[0] ?? ""
+    const activeIngredients = ingredients?.filter(el => el?.isActive)?.map(el => el?.name)?.join(", ") ?? ""
 
     return (
         <div>
@@ -15,7 +14,7 @@ function Summary(props) {
             <div className="card" style={{width: "800px", margin: "0 auto 30px auto", padding: "10px"}}>
                 <h6 className="teal-text">{activeMeats}</h6>
                 <ul className="collection">
-                    {ingredients.filter(el => el.isActive).map(el => <li key={el.id}>{el.name}</li>)}
+                    {ingredients?.filter(el => el?.isActive)?.map(el => <li key={el?.id}>{el?.name}</li>)}
                     {instruction}
                 </ul>
                 <div>
@@ -24,12 +23,10 @@ function Summary(props) {
                         <i className="material-icons right">send</i>
                     </button>
                     <button onClick={handleClearSummary} className="btn-flat red-text">Clear</button>
-
                 </div>
             </div>
-
         </div>
-    );
+    )
 }
 
-export default Summary;
+export default Summary

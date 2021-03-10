@@ -1,16 +1,14 @@
-import React from "react";
+import React from "react"
 
-
-function Navbar() {
-    return (
-        <nav>
-            <div className="nav-wrapper red">
-                <div className="brand-logo center">
-                    Best Burger
-                </div>
+const Navbar = () => (
+    <nav>
+        <div className="nav-wrapper red">
+            <div className="brand-logo center">
+                Best Burger
+                By SRIWAN
             </div>
-        </nav>
-    )
-}
+        </div>
+    </nav>
+)
 
-export default Navbar;
+export default Navbar

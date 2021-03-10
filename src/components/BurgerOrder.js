@@ -1,16 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-function BurgerOrder(props) {
-    const {meat, ingredients, instruction, handleDeleted, id, isDelivered, handleDelivered} = props
-
-    return (
+const BurgerOrder = ({meat, ingredients, instruction, handleDeleted, id, isDelivered, handleDelivered}) => (
         <div className={isDelivered ? "card grey lighten-1" : "card"}
              style={{width: "800px", margin: "0 auto 30px auto", padding: "10px"}}>
             <h6 className="teal-text" style={isDelivered ? {"textDecoration": "line-through"} : null}>{meat}</h6>
 
             <ul style={isDelivered ? {"textDecoration": "line-through"} : null} className="collection">
-                {ingredients.map(el => <li key={Math.round(Math.random() * 1000)}>{el}</li>)}
-                <li key={Math.round(Math.random() * 1000)}>{instruction}</li>
+                {ingredients?.map((el, idx) => <li key={idx}>{el}</li>)}
+                <li key={id}>{instruction}</li>
             </ul>
 
             <button id={id} onClick={(e) => handleDelivered(e)} style={{margin: "2px"}}
@@ -23,8 +20,6 @@ function BurgerOrder(props) {
                 <i className="material-icons left">delete</i>
             </button>
         </div>
+    )
 
-    );
-}
-
-export default BurgerOrder;
+export default BurgerOrder
