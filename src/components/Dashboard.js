@@ -18,7 +18,7 @@ function Dashboard(props) {
             const odrs = snapshot.val()
             const orderList = []
             for (let id in odrs) {
-                orderList.push(odrs[id])
+                orderList.push({id, ...odrs[id]})
             }
             setOrders(orderList)
         })
@@ -29,12 +29,10 @@ function Dashboard(props) {
         if (!activeMeats && !instruction) return
 
         setInstuction("")
-        const randomId = Math.round(Math.random() * 1000)
         const newOrder = {
             meat: activeMeats,
             ingredients: [activeIngredients],
             instruction: instruction,
-            id: randomId,
             isDelivered: false
         };
         const burgerOrder = [...orders, newOrder];
@@ -80,7 +78,8 @@ function Dashboard(props) {
     }
 
     const handleDeleted = (id) => {
-        setOrders([...orders.filter(el => el.id !== parseInt(id))])
+        const delOrderRef = orderRef.child(id)
+        delOrderRef.remove()
     }
 
     const handleClearSummary = () => {
