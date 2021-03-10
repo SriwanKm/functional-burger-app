@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/functional-burger-app/static/css/main.fdc8afa0.chunk.css",
+    "main.js": "/functional-burger-app/static/js/main.5b1586e7.chunk.js",
+    "main.js.map": "/functional-burger-app/static/js/main.5b1586e7.chunk.js.map",
+    "runtime-main.js": "/functional-burger-app/static/js/runtime-main.a2382eeb.js",
+    "runtime-main.js.map": "/functional-burger-app/static/js/runtime-main.a2382eeb.js.map",
+    "static/js/2.03cc35a6.chunk.js": "/functional-burger-app/static/js/2.03cc35a6.chunk.js",
+    "static/js/2.03cc35a6.chunk.js.map": "/functional-burger-app/static/js/2.03cc35a6.chunk.js.map",
+    "static/js/3.e3d46ca7.chunk.js": "/functional-burger-app/static/js/3.e3d46ca7.chunk.js",
+    "static/js/3.e3d46ca7.chunk.js.map": "/functional-burger-app/static/js/3.e3d46ca7.chunk.js.map",
+    "index.html": "/functional-burger-app/index.html",
+    "static/css/main.fdc8afa0.chunk.css.map": "/functional-burger-app/static/css/main.fdc8afa0.chunk.css.map",
+    "static/js/2.03cc35a6.chunk.js.LICENSE.txt": "/functional-burger-app/static/js/2.03cc35a6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a2382eeb.js",
+    "static/js/2.03cc35a6.chunk.js",
+    "static/css/main.fdc8afa0.chunk.css",
+    "static/js/main.5b1586e7.chunk.js"
+  ]
+}
