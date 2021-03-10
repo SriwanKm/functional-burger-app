@@ -4,7 +4,7 @@ function BurgerOrder(props) {
     const {meat, ingredients, instruction, handleDeleted, id, isDelivered, handleDelivered} = props
 
     return (
-        <div className={isDelivered ? "card grey lighten-2" : "card"}
+        <div className={isDelivered ? "card grey lighten-1" : "card"}
              style={{width: "800px", margin: "0 auto 30px auto", padding: "10px"}}>
             <h6 className="teal-text" style={isDelivered ? {"textDecoration": "line-through"} : null}>{meat}</h6>
 
