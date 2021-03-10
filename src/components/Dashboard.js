@@ -6,15 +6,14 @@ import firebase from '../util/firebase'
 
 function Dashboard(props) {
     const [orders, setOrders] = useState([])
-    const [meats, setMeats] = useState([])
-    const [ingredients, setIngredients] = useState([])
+    const [meats, setMeats] = useState(MEAT_SEEDS)
+    const [ingredients, setIngredients] = useState(INGREDIENT_SEEDS)
     const [instruction, setInstuction] = useState("")
     const [isDelivered, setDelivered] = useState(false)
     const orderRef = firebase.database().ref('BurgerOrder')
 
-
     useEffect(() => {
-        orderRef.on('value', (snapshot)=>{
+        orderRef.on('value', (snapshot) => {
             const odrs = snapshot.val()
             const orderList = []
             for (let id in odrs) {
@@ -36,7 +35,7 @@ function Dashboard(props) {
             isDelivered: false
         };
         const burgerOrder = [...orders, newOrder];
-        setOrders(burgerOrder)
+
         orderRef.push(newOrder)
         setMeats(meats.map(el => {
             el.isActive = false
@@ -48,23 +47,12 @@ function Dashboard(props) {
         }))
     }
 
-
     const toggleActive = (e) => {
         setMeats([...meats.map(el => {
             el.isActive = el.id === parseInt(e.target.id);
             return el
         })])
     }
-
-    useEffect(() => {
-        // Replace with API call
-        setMeats([...MEAT_SEEDS])
-    }, [])
-
-
-    useEffect(() => {
-        setIngredients([...INGREDIENT_SEEDS])
-    }, [])
 
     const ingredientActive = (e) => {
         setIngredients([...ingredients.map(el => {
@@ -78,8 +66,7 @@ function Dashboard(props) {
     }
 
     const handleDeleted = (id) => {
-        const delOrderRef = orderRef.child(id)
-        delOrderRef.remove()
+        orderRef.child(id).remove()
     }
 
     const handleClearSummary = () => {
@@ -95,15 +82,13 @@ function Dashboard(props) {
     }
 
     const handleDelivered = (e) => {
-        setDelivered(orders.map(el => {
-                if (el.id === parseInt(e.target.id)) {
-                    el.isDelivered = !el.isDelivered
-                    return el
-                }
-                return null
-            })
-        )
+        var childRef = firebase.database().ref('BurgerOrder/' + e.target.id)
+        childRef.once('value', (snapshot) => {
+            const data = snapshot.val()
+            childRef.update({isDelivered: !data.isDelivered})
+        })
     }
+
 
     return (
         <div>
